@@ -630,21 +630,23 @@ h1, h2, h3 {
     });
   }
 
-  // 3. Auto-Detect Extra Images (Image9, Image10, etc.)
+  // Auto-Detect Images (Starting from Image1)
   async function autoDetectImages() {
     const galleryContainer = document.getElementById('dynamic-gallery');
     if (!galleryContainer) return;
 
-    let imageIndex = 9; // Starting check from Image9
+    let imageIndex = 1; // Start checking from Image1, not Image9
     let consecutiveFailures = 0;
-    const maxFailures = 2; // Stop checking after 2 missing images in a row
+    const maxFailures = 2; // Stop after 2 missing images in a row
 
     while (consecutiveFailures < maxFailures) {
-      const extensions = ['jpg', 'jpeg', 'png', 'webp'];
+      // Check both lowercase and uppercase extensions for GitHub compatibility
+      const extensions = ['jpg', 'JPG', 'jpeg', 'JPEG', 'png', 'PNG', 'webp', 'WEBP'];
       let found = false;
 
       for (const ext of extensions) {
-        const imagePath = `images/Image${imageIndex}.${ext}`;
+        // REMOVED "images/" prefix since files are in the main folder
+        const imagePath = `Image${imageIndex}.${ext}`;
         const exists = await checkImageExists(imagePath);
 
         if (exists) {
