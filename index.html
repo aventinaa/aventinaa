@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<title></title>
+	<meta name="generator" content="LibreOffice 24.8.1.2 (Linux)"/>
+	<meta name="created" content="00:00:00"/>
+	<meta name="changed" content="00:00:00"/>
+	<style type="text/css">
+		@page { size: 8.27in 11.69in; margin: 0.79in }
+		p { line-height: 115%; margin-bottom: 0.1in; background: transparent }
+		pre { background: transparent }
+		pre.western { font-family: "Liberation Mono", monospace; font-size: 10pt }
+		pre.cjk { font-family: "NSimSun", monospace; font-size: 10pt }
+		pre.ctl { font-family: "Liberation Mono", monospace; font-size: 10pt }
+	</style>
+</head>
+<body lang="en-US" link="#000080" vlink="#800000" dir="ltr"><pre class="western">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;title&gt;Aventinaa | The Art of Elegance&lt;/title&gt;
+    &lt;!-- Google Fonts --&gt;
+    &lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;
+    &lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot; crossorigin&gt;
+    &lt;link href=&quot;https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&amp;family=Montserrat:wght@300;400;500;600&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;
+    
+    &lt;style&gt;
+        /* Color Palette derived from logo */
+        :root {
+            --emerald: #016848;
+            --emerald-dark: #004d35;
+            --emerald-light: #02825b;
+            --gold: #d4af37;
+            --gold-light: #f3e5ab;
+            --black: #0a0a0a;
+            --white: #ffffff;
+            --gray-bg: #f9f9f9;
+            --text-dark: #111111;
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Base Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--white);
+            color: var(--text-dark);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Typography */
+        h1, h2, h3, .brand-font {
+            font-family: 'Cinzel', serif;
+            letter-spacing: 2px;
+        }
+
+        /* Header &amp; Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(1, 104, 72, 0.1);
+            transition: var(--transition);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+        }
+
+        .logo-container img {
+            height: 45px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .logo-text {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--emerald);
+            letter-spacing: 3px;
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 15px;
+        }
+
+        /* Minimal Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 22px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            text-decoration: none;
+            transition: var(--transition);
+            cursor: pointer;
+            border: 1px solid transparent;
+        }
+
+        .btn-outline {
+            border-color: var(--emerald);
+            color: var(--emerald);
+            background: transparent;
+        }
+
+        .btn-outline:hover {
+            background-color: var(--emerald);
+            color: var(--white);
+        }
+
+        .btn-solid {
+            background-color: var(--emerald);
+            color: var(--white);
+        }
+
+        .btn-solid:hover {
+            background-color: var(--emerald-dark);
+            border-color: var(--emerald-dark);
+        }
+
+        .btn-gold {
+            background-color: var(--gold);
+            color: var(--black);
+            font-weight: 600;
+        }
+
+        .btn-gold:hover {
+            background-color: #c49f2c;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 85vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 140px 20px 60px;
+            background: linear-gradient(180deg, rgba(1, 104, 72, 0.03) 0%, rgba(255, 255, 255, 1) 100%);
+        }
+
+        .hero-subtitle {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--gold);
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            color: var(--emerald);
+            margin-bottom: 20px;
+            font-weight: 600;
+            max-width: 800px;
+        }
+
+        .hero-description {
+            max-width: 600px;
+            font-size: 1.05rem;
+            color: #555;
+            font-weight: 300;
+            margin-bottom: 40px;
+        }
+
+        /* Gallery Grid Section */
+        .gallery-section {
+            padding: 60px 8% 120px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            color: var(--emerald);
+            margin-bottom: 10px;
+        }
+
+        .section-divider {
+            width: 50px;
+            height: 2px;
+            background-color: var(--gold);
+            margin: 0 auto;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        /* Gallery Item Card */
+        .gallery-item {
+            position: relative;
+            background-color: var(--gray-bg);
+            border-radius: 4px;
+            overflow: hidden;
+            cursor: pointer;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s ease, box-shadow 0.4s ease;
+        }
+
+        .gallery-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .gallery-item:hover {
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .image-wrapper {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            overflow: hidden;
+            position: relative;
+            background-color: #eaeaea;
+        }
+
+        .gallery-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .gallery-item:hover .gallery-img {
+            transform: scale(1.08);
+        }
+
+        .item-info {
+            padding: 20px;
+            text-align: center;
+            background-color: var(--white);
+            border-top: 1px solid #f0f0f0;
+        }
+
+        .item-title {
+            font-size: 1.1rem;
+            color: var(--emerald);
+            margin-bottom: 5px;
+        }
+
+        .item-subtitle {
+            font-size: 0.8rem;
+            color: #777;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Modal Overlay */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(10, 10, 10, 0.85);
+            backdrop-filter: blur(8px);
+            z-index: 2000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+            padding: 20px;
+        }
+
+        .modal.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .modal-content {
+            background-color: var(--white);
+            max-width: 900px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+            transform: scale(0.9);
+            transition: transform 0.4s ease;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+        }
+
+        .modal.active .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 2rem;
+            color: var(--black);
+            cursor: pointer;
+            z-index: 10;
+            background: none;
+            border: none;
+            line-height: 1;
+        }
+
+        .modal-image-container {
+            width: 100%;
+            height: 100%;
+            min-height: 400px;
+            background-color: var(--gray-bg);
+        }
+
+        .modal-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .modal-details {
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .modal-title {
+            font-size: 1.8rem;
+            color: var(--emerald);
+            margin-bottom: 10px;
+        }
+
+        .modal-tagline {
+            color: var(--gold);
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .modal-description {
+            font-size: 0.95rem;
+            color: #555;
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--emerald-dark);
+            color: var(--white);
+            padding: 60px 8% 30px;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+
+        .footer-logo {
+            font-size: 1.8rem;
+            color: var(--gold-light);
+            margin-bottom: 15px;
+        }
+
+        .footer-text {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-bottom: 25px;
+        }
+
+        .footer-contact-btns {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .copyright {
+            font-size: 0.8rem;
+            opacity: 0.5;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 25px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-title { font-size: 2.2rem; }
+            .modal-content { grid-template-columns: 1fr; max-height: 90vh; overflow-y: auto; }
+            .modal-image-container { height: 300px; }
+            .modal-details { padding: 25px; }
+            header { padding: 15px 5%; }
+            .nav-actions { gap: 8px; }
+            .btn { padding: 8px 14px; font-size: 0.75rem; }
+        }
+        /* ==========================================================================
+   Aventinaa Core Styling &amp; Theme
+   ========================================================================== */
+
+:root {
+  --primary-color: #1a1a1a;
+  --accent-color: #d4af37; /* Elegant gold tone for jewelry &amp; hampers */
+  --bg-color: #fafafa;
+  --card-bg: #ffffff;
+  --text-color: #333333;
+  --text-muted: #777777;
+  --font-heading: 'Playfair Display', serif, Georgia;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+  --transition-smooth: cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Base Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* Typography */
+h1, h2, h3 {
+  font-family: var(--font-heading);
+  color: var(--primary-color);
+  letter-spacing: 0.5px;
+}
+
+/* ==========================================================================
+   Dynamic Gallery &amp; Card Layout
+   ========================================================================== */
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+  padding: 2rem 5%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.gallery-card {
+  background: var(--card-bg);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  transition: transform 0.4s var(--transition-smooth), box-shadow 0.4s var(--transition-smooth);
+}
+
+.gallery-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
+}
+
+.gallery-card img {
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+  display: block;
+}
+
+.gallery-card .card-content {
+  padding: 1.25rem;
+}
+
+.gallery-card .card-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.gallery-card [data-text-file] {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+/* ==========================================================================
+   Scroll Reveal Animation System
+   ========================================================================== */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s var(--transition-smooth), transform 0.8s var(--transition-smooth);
+  will-change: opacity, transform;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ==========================================================================
+   Responsive Adjustments
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .gallery-grid {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1.25rem;
+    padding: 1rem 3%;
+  }
+
+  .gallery-card img {
+    height: 240px;
+  }
+}
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+    &lt;!-- Navigation Header --&gt;
+    &lt;header&gt;
+        &lt;a href=&quot;#&quot; class=&quot;logo-container&quot;&gt;
+            &lt;img src=&quot;logo.png&quot; alt=&quot;Aventinaa Logo&quot; id=&quot;header-logo&quot;&gt;
+            &lt;span class=&quot;logo-text&quot;&gt;AVENTINAA&lt;/span&gt;
+        &lt;/a&gt;
+        &lt;div class=&quot;nav-actions&quot;&gt;
+            &lt;a href=&quot;https://wa.me/yourwhatsappnumber&quot; target=&quot;_blank&quot; class=&quot;btn btn-outline&quot;&gt;WhatsApp Us&lt;/a&gt;
+            &lt;a href=&quot;mailto:your@email.com&quot; class=&quot;btn btn-solid&quot;&gt;Mail Us&lt;/a&gt;
+        &lt;/div&gt;
+    &lt;/header&gt;
+
+    &lt;!-- Hero Section --&gt;
+    &lt;section class=&quot;hero&quot;&gt;
+        &lt;p class=&quot;hero-subtitle&quot;&gt;The Art of Elegance&lt;/p&gt;
+        &lt;h1 class=&quot;hero-title&quot;&gt;Welcome to Aventinaa&lt;/h1&gt;
+        &lt;p class=&quot;hero-description&quot;&gt;We specialize in timeless elegance crafted for the youth. Discover minimalist fine jewellery pieces made to illuminate your everyday grace.&lt;/p&gt;
+        &lt;a href=&quot;#gallery&quot; class=&quot;btn btn-gold&quot;&gt;Explore Collection&lt;/a&gt;
+    &lt;/section&gt;
+
+    &lt;!-- Jewellery Gallery Section --&gt;
+    &lt;section class=&quot;gallery-section&quot; id=&quot;gallery&quot;&gt;
+        &lt;div class=&quot;section-header&quot;&gt;
+            &lt;h2 class=&quot;section-title&quot;&gt;Curated Pieces&lt;/h2&gt;
+            &lt;div class=&quot;section-divider&quot;&gt;&lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;!-- Dynamic Grid Container --&gt;
+        &lt;div class=&quot;gallery-grid&quot; id=&quot;gallery-grid&quot;&gt;
+            &lt;!-- Dynamic JavaScript Content Will Inject Here --&gt;
+        &lt;/div&gt;
+    &lt;/section&gt;
+
+    &lt;!-- Product Modal / Maximized View --&gt;
+    &lt;div class=&quot;modal&quot; id=&quot;product-modal&quot;&gt;
+        &lt;div class=&quot;modal-content&quot;&gt;
+            &lt;button class=&quot;modal-close&quot; id=&quot;modal-close&quot;&gt;&amp;times;&lt;/button&gt;
+            &lt;div class=&quot;modal-image-container&quot;&gt;
+                &lt;img src=&quot;&quot; alt=&quot;Jewellery Piece&quot; id=&quot;modal-img&quot;&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;modal-details&quot;&gt;
+                &lt;h3 class=&quot;modal-title&quot; id=&quot;modal-title&quot;&gt;Elegance Piece&lt;/h3&gt;
+                &lt;p class=&quot;modal-tagline&quot;&gt;Signature Collection&lt;/p&gt;
+                &lt;p class=&quot;modal-description&quot; id=&quot;modal-desc&quot;&gt;Crafted with precision and designed for modern sophistication. A perfect addition to elevate your look.&lt;/p&gt;
+                &lt;a href=&quot;#&quot; target=&quot;_blank&quot; class=&quot;btn btn-solid&quot; id=&quot;modal-buy-btn&quot;&gt;Buy Now&lt;/a&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Footer --&gt;
+    &lt;footer&gt;
+        &lt;div class=&quot;footer-content&quot;&gt;
+            &lt;h3 class=&quot;footer-logo brand-font&quot;&gt;AVENTINAA&lt;/h3&gt;
+            &lt;p class=&quot;footer-text&quot;&gt;Redefining modern elegance for the vibrant youth.&lt;/p&gt;
+            &lt;div class=&quot;footer-contact-btns&quot;&gt;
+                &lt;a href=&quot;https://wa.me/yourwhatsappnumber&quot; target=&quot;_blank&quot; class=&quot;btn btn-outline&quot; style=&quot;border-color: var(--gold-light); color: var(--gold-light);&quot;&gt;WhatsApp Us&lt;/a&gt;
+                &lt;a href=&quot;mailto:your@email.com&quot; class=&quot;btn btn-gold&quot;&gt;Mail Us&lt;/a&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;p class=&quot;copyright&quot;&gt;All Rights Reserved. Aventinaa&lt;/p&gt;
+    &lt;/footer&gt;
+
+    &lt;script&gt;
+  // 1. Scroll-Reveal Animation Logic
+  const observerOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.15
+  };
+
+  const revealObserver = new IntersectionObserver((entries, observer) =&gt; {
+    entries.forEach(entry =&gt; {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target); // Animate only once
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll('.reveal').forEach(el =&gt; {
+    revealObserver.observe(el);
+  });
+
+  // 2. Dynamic Text File Loader (Link1.txt, Link2.txt, etc.)
+  async function loadTextFiles() {
+    const textElements = document.querySelectorAll('[data-text-file]');
+    
+    textElements.forEach(async (el) =&gt; {
+      const fileName = el.getAttribute('data-text-file');
+      try {
+        const response = await fetch(fileName);
+        if (response.ok) {
+          const text = await response.text();
+          el.innerText = text.trim();
+        }
+      } catch (err) {
+        console.warn(`Could not load ${fileName}:`, err);
+      }
+    });
+  }
+
+  // 3. Auto-Detect Extra Images (Image9, Image10, etc.)
+  async function autoDetectImages() {
+    const galleryContainer = document.getElementById('dynamic-gallery');
+    if (!galleryContainer) return;
+
+    let imageIndex = 9; // Starting check from Image9
+    let consecutiveFailures = 0;
+    const maxFailures = 2; // Stop checking after 2 missing images in a row
+
+    while (consecutiveFailures &lt; maxFailures) {
+      const extensions = ['jpg', 'jpeg', 'png', 'webp'];
+      let found = false;
+
+      for (const ext of extensions) {
+        const imagePath = `images/Image${imageIndex}.${ext}`;
+        const exists = await checkImageExists(imagePath);
+
+        if (exists) {
+          appendImageToGallery(galleryContainer, imagePath, imageIndex);
+          found = true;
+          consecutiveFailures = 0;
+          break;
+        }
+      }
+
+      if (!found) {
+        consecutiveFailures++;
+      }
+
+      imageIndex++;
+    }
+  }
+
+  // Helper: Check if image path returns 200 OK
+  function checkImageExists(url) {
+    return new Promise((resolve) =&gt; {
+      const img = new Image();
+      img.onload = () =&gt; resolve(true);
+      img.onerror = () =&gt; resolve(false);
+      img.src = url;
+    });
+  }
+
+  // Helper: Inject new image node into DOM with reveal effect
+  function appendImageToGallery(container, src, index) {
+    const card = document.createElement('div');
+    card.className = 'gallery-card reveal';
+    card.innerHTML = `
+      &lt;img src=&quot;${src}&quot; alt=&quot;Aventinaa Collection item ${index}&quot; loading=&quot;lazy&quot;&gt;
+    `;
+    container.appendChild(card);
+    revealObserver.observe(card); // Attach reveal animation to new element
+  }
+
+  // Initialize on page load
+  window.addEventListener('DOMContentLoaded', () =&gt; {
+    loadTextFiles();
+    autoDetectImages();
+  });
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+</body>
+</html>
