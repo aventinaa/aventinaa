@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aventinaa — The Art of Elegance</title>
+<meta name="description" content="Aventinaa — a jewellery brand for the youth, specialising in elegance.">
+<link rel="icon" href="logo.png" type="image/png">
+<style>
+  :root{
+    --green:#06241c;
+    --green-soft:#0a3327;
+    --gold:#c49e42;
+    --gold-soft:#e7c877;
+    --white:#f3f1ec;
+    --black:#08100d;
+    --radius:22px;
+    --glass-bg: rgba(255,255,255,0.05);
+    --glass-border: rgba(196,158,66,0.25);
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:
+      radial-gradient(circle at 20% 0%, rgba(196,158,66,0.06), transparent 40%),
+      radial-gradient(circle at 90% 30%, rgba(196,158,66,0.05), transparent 45%),
+      var(--green);
+    color:var(--white);
+    font-family: 'Georgia', 'Times New Roman', serif;
+    overflow-x:hidden;
+  }
+
+  a{text-decoration:none;color:inherit;}
+
+  ::selection{background:var(--gold); color:var(--black);}
+
+  /* ---------- Scrollbar ---------- */
+  ::-webkit-scrollbar{width:8px;}
+  ::-webkit-scrollbar-thumb{background:var(--gold-soft); border-radius:10px;}
+  ::-webkit-scrollbar-track{background:transparent;}
+
+  /* ---------- Nav ---------- */
+  header{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 6vw;
+    background:rgba(6,36,28,0.55);
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
+    border-bottom:1px solid rgba(196,158,66,0.15);
+    transition: padding .3s ease;
+  }
+  .brand{display:flex; align-items:center; gap:12px;}
+  .brand img{height:42px; width:42px; object-fit:contain;}
+  .brand span{
+    font-size:1.3rem; letter-spacing:4px; font-weight:600;
+    color:var(--white);
+  }
+  nav ul{display:flex; list-style:none; gap:34px;}
+  nav a{
+    font-size:.85rem; letter-spacing:2px; text-transform:uppercase;
+    color:var(--white); opacity:.85; position:relative; padding-bottom:4px;
+  }
+  nav a::after{
+    content:''; position:absolute; left:0; bottom:0; width:0; height:1px;
+    background:var(--gold); transition:width .35s ease;
+  }
+  nav a:hover::after{width:100%;}
+  nav a:hover{opacity:1;}
+
+  .nav-toggle{display:none; flex-direction:column; gap:5px; cursor:pointer; z-index:120;}
+  .nav-toggle span{width:26px; height:2px; background:var(--gold);}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    min-height:100vh;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center; padding:140px 6vw 80px;
+    position:relative;
+  }
+  .hero-logo{
+    width:150px; height:150px; object-fit:contain;
+    margin-bottom:28px;
+    opacity:0; transform:translateY(30px) scale(.9);
+    animation: rise 1.1s ease forwards .15s;
+    filter:drop-shadow(0 10px 30px rgba(196,158,66,0.25));
+  }
+  .hero h1{
+    font-size:clamp(2.2rem, 6vw, 4.5rem);
+    letter-spacing:10px;
+    font-weight:400;
+    color:var(--white);
+    opacity:0; transform:translateY(30px);
+    animation: rise 1.1s ease forwards .35s;
+  }
+  .hero h1 span{color:var(--gold);}
+  .hero p.tagline{
+    margin-top:18px; font-size:.95rem; letter-spacing:5px; text-transform:uppercase;
+    color:var(--gold-soft);
+    opacity:0; transform:translateY(20px);
+    animation: rise 1.1s ease forwards .55s;
+  }
+  .hero p.desc{
+    max-width:560px; margin-top:26px; line-height:1.9; font-size:1.05rem;
+    color:rgba(243,241,236,0.8);
+    opacity:0; transform:translateY(20px);
+    animation: rise 1.1s ease forwards .75s;
+  }
+  .hero .cta{
+    margin-top:40px; display:flex; gap:18px; flex-wrap:wrap; justify-content:center;
+    opacity:0; transform:translateY(20px);
+    animation: rise 1.1s ease forwards .95s;
+  }
+
+  @keyframes rise{ to{opacity:1; transform:translateY(0) scale(1);} }
+
+  .btn{
+    padding:14px 34px;
+    border-radius:50px;
+    font-size:.8rem; letter-spacing:3px; text-transform:uppercase;
+    border:1px solid var(--gold);
+    background:transparent;
+    color:var(--gold-soft);
+    cursor:pointer;
+    transition: all .35s ease;
+  }
+  .btn.filled{
+    background:var(--gold);
+    color:var(--black);
+    border-color:var(--gold);
+  }
+  .btn:hover{
+    background:var(--gold);
+    color:var(--black);
+    transform:translateY(-3px);
+    box-shadow:0 10px 25px rgba(196,158,66,0.25);
+  }
+
+  .scroll-hint{
+    position:absolute; bottom:34px; left:50%; transform:translateX(-50%);
+    display:flex; flex-direction:column; align-items:center; gap:8px;
+    color:var(--gold-soft); font-size:.7rem; letter-spacing:3px; text-transform:uppercase;
+    opacity:.7;
+  }
+  .scroll-hint .line{
+    width:1px; height:40px; background:linear-gradient(var(--gold), transparent);
+    animation: scrolldown 1.8s ease-in-out infinite;
+  }
+  @keyframes scrolldown{
+    0%{transform:scaleY(0); transform-origin:top;}
+    50%{transform:scaleY(1); transform-origin:top;}
+    51%{transform-origin:bottom;}
+    100%{transform:scaleY(0); transform-origin:bottom;}
+  }
+
+  /* ---------- Section shared ---------- */
+  section{padding:120px 6vw;}
+  .section-head{text-align:center; max-width:700px; margin:0 auto 70px;}
+  .section-head .eyebrow{
+    font-size:.75rem; letter-spacing:5px; text-transform:uppercase; color:var(--gold);
+  }
+  .section-head h2{
+    font-size:clamp(1.8rem, 4vw, 2.8rem); font-weight:400; margin-top:14px; letter-spacing:2px;
+  }
+  .section-head p{
+    margin-top:20px; color:rgba(243,241,236,0.72); line-height:1.9; font-size:1rem;
+  }
+
+  .reveal{
+    opacity:0; transform:translateY(40px);
+    transition: opacity .9s ease, transform .9s ease;
+  }
+  .reveal.visible{opacity:1; transform:translateY(0);}
+
+  /* ---------- About ---------- */
+  .about-grid{
+    display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center;
+    max-width:1100px; margin:0 auto;
+  }
+  .about-card{
+    background:var(--glass-bg);
+    border:1px solid var(--glass-border);
+    backdrop-filter:blur(16px);
+    -webkit-backdrop-filter:blur(16px);
+    border-radius:var(--radius);
+    padding:46px;
+  }
+  .about-card h3{font-size:1.5rem; font-weight:400; letter-spacing:1px; color:var(--gold-soft); margin-bottom:18px;}
+  .about-card p{line-height:1.95; color:rgba(243,241,236,0.78);}
+  .about-visual{
+    height:100%; min-height:340px;
+    border-radius:var(--radius);
+    background:linear-gradient(145deg, rgba(196,158,66,0.12), rgba(255,255,255,0.02));
+    border:1px solid var(--glass-border);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .about-visual img{width:120px; height:120px; object-fit:contain; opacity:.9;}
+
+  /* ---------- Gallery ---------- */
+  .gallery{
+    max-width:1200px; margin:0 auto;
+    display:grid; grid-template-columns:repeat(4, 1fr); gap:26px;
+  }
+  .g-item{
+    position:relative; border-radius:var(--radius); overflow:hidden;
+    aspect-ratio:3/3.7; cursor:pointer;
+    border:1px solid var(--glass-border);
+    background:var(--glass-bg);
+    opacity:0; transform:translateY(50px) scale(.94);
+    transition: opacity .8s ease, transform .8s ease, box-shadow .4s ease;
+  }
+  .g-item.visible{opacity:1; transform:translateY(0) scale(1);}
+  .g-item img{
+    width:100%; height:100%; object-fit:cover;
+    transition: transform .8s cubic-bezier(.2,.8,.2,1), filter .5s ease;
+    filter:saturate(.95) brightness(.95);
+  }
+  .g-item:hover img{transform:scale(1.08); filter:saturate(1.1) brightness(1);}
+  .g-item .overlay{
+    position:absolute; inset:0;
+    background:linear-gradient(to top, rgba(6,36,28,0.85) 0%, rgba(6,36,28,0.05) 55%);
+    display:flex; align-items:flex-end; padding:22px;
+    opacity:0; transition:opacity .45s ease;
+  }
+  .g-item:hover .overlay{opacity:1;}
+  .g-item .overlay span{
+    letter-spacing:3px; font-size:.8rem; text-transform:uppercase; color:var(--gold-soft);
+  }
+
+  @media (max-width:980px){ .gallery{grid-template-columns:repeat(2,1fr);} .about-grid{grid-template-columns:1fr;} }
+  @media (max-width:560px){ .gallery{grid-template-columns:repeat(2,1fr); gap:14px;} }
+
+  /* ---------- Modal ---------- */
+  .modal-backdrop{
+    position:fixed; inset:0; z-index:200;
+    background:rgba(4,20,15,0.75);
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+    display:flex; align-items:center; justify-content:center;
+    opacity:0; pointer-events:none;
+    transition:opacity .4s ease;
+    padding:24px;
+  }
+  .modal-backdrop.active{opacity:1; pointer-events:all;}
+  .modal{
+    background:linear-gradient(160deg, rgba(10,51,39,0.9), rgba(6,36,28,0.95));
+    border:1px solid var(--glass-border);
+    border-radius:28px;
+    max-width:920px; width:100%;
+    display:grid; grid-template-columns:1.1fr 1fr;
+    overflow:hidden;
+    transform:scale(.9) translateY(30px); opacity:0;
+    transition: transform .45s cubic-bezier(.2,.8,.2,1), opacity .4s ease;
+    max-height:86vh;
+  }
+  .modal-backdrop.active .modal{transform:scale(1) translateY(0); opacity:1;}
+  .modal-img{background:#02110c; display:flex; align-items:center; justify-content:center; overflow:hidden;}
+  .modal-img img{width:100%; height:100%; object-fit:cover; max-height:86vh;}
+  .modal-body{padding:46px 42px; display:flex; flex-direction:column; overflow-y:auto;}
+  .modal-body h3{font-size:1.6rem; font-weight:400; color:var(--gold-soft); letter-spacing:1px; margin-bottom:18px;}
+  .modal-body p{line-height:1.95; color:rgba(243,241,236,0.8); font-size:.98rem; flex:1;}
+  .modal-body .btn{margin-top:30px; align-self:flex-start;}
+  .modal-close{
+    position:absolute; top:20px; right:20px; z-index:5;
+    width:40px; height:40px; border-radius:50%;
+    background:rgba(0,0,0,0.35); border:1px solid var(--glass-border);
+    display:flex; align-items:center; justify-content:center;
+    cursor:pointer; color:var(--gold-soft); font-size:1.2rem;
+    transition: background .3s ease;
+  }
+  .modal-close:hover{background:rgba(196,158,66,0.25);}
+
+  @media (max-width:720px){
+    .modal{grid-template-columns:1fr; max-height:92vh;}
+    .modal-img{max-height:260px;}
+    .modal-img img{max-height:260px;}
+  }
+
+  /* ---------- Contact ---------- */
+  .contact-wrap{
+    max-width:760px; margin:0 auto; text-align:center;
+  }
+  .contact-card{
+    background:var(--glass-bg); border:1px solid var(--glass-border);
+    backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
+    border-radius:var(--radius); padding:56px 40px;
+  }
+  .contact-actions{
+    display:flex; gap:20px; justify-content:center; margin-top:36px; flex-wrap:wrap;
+  }
+  .contact-actions a{
+    display:flex; align-items:center; gap:10px;
+    padding:14px 30px; border-radius:50px;
+    border:1px solid var(--gold);
+    font-size:.8rem; letter-spacing:2px; text-transform:uppercase;
+    color:var(--gold-soft);
+    transition: all .35s ease;
+  }
+  .contact-actions a:hover{
+    background:var(--gold); color:var(--black); transform:translateY(-3px);
+    box-shadow:0 10px 25px rgba(196,158,66,0.25);
+  }
+  .contact-actions svg{width:18px; height:18px; fill:currentColor;}
+
+  /* Floating contact button */
+  .floating-contact{
+    position:fixed; bottom:28px; right:28px; z-index:150;
+  }
+  .fc-toggle{
+    width:60px; height:60px; border-radius:50%;
+    background:var(--gold);
+    display:flex; align-items:center; justify-content:center;
+    cursor:pointer; box-shadow:0 8px 24px rgba(0,0,0,0.4);
+    border:none;
+  }
+  .fc-toggle svg{width:26px; height:26px; fill:var(--black);}
+  .fc-menu{
+    position:absolute; bottom:74px; right:0;
+    display:flex; flex-direction:column; gap:12px;
+    opacity:0; pointer-events:none; transform:translateY(10px);
+    transition: all .3s ease;
+  }
+  .fc-menu.open{opacity:1; pointer-events:all; transform:translateY(0);}
+  .fc-menu a{
+    display:flex; align-items:center; gap:10px;
+    background:rgba(6,36,28,0.9);
+    border:1px solid var(--glass-border);
+    backdrop-filter:blur(10px);
+    padding:12px 20px; border-radius:50px;
+    font-size:.78rem; letter-spacing:2px; text-transform:uppercase;
+    color:var(--white); white-space:nowrap;
+  }
+  .fc-menu a:hover{background:var(--gold); color:var(--black);}
+  .fc-menu svg{width:16px; height:16px; fill:currentColor;}
+
+  /* ---------- Footer ---------- */
+  footer{
+    text-align:center; padding:50px 6vw 40px;
+    border-top:1px solid rgba(196,158,66,0.15);
+  }
+  footer .brand{justify-content:center; margin-bottom:14px;}
+  footer p{font-size:.78rem; letter-spacing:2px; color:rgba(243,241,236,0.5);}
+
+  /* ---------- Mobile nav ---------- */
+  @media (max-width:820px){
+    nav{
+      position:fixed; top:0; right:0; height:100vh; width:min(78vw,320px);
+      background:rgba(6,36,28,0.97);
+      backdrop-filter:blur(20px);
+      display:flex; align-items:center; justify-content:center;
+      transform:translateX(100%); transition:transform .45s ease;
+      border-left:1px solid var(--glass-border);
+    }
+    nav.open{transform:translateX(0);}
+    nav ul{flex-direction:column; text-align:center; gap:30px;}
+    .nav-toggle{display:flex;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <a href="#top" class="brand">
+    <img src="logo.png" alt="Aventinaa logo">
+    <span>AVENTINAA</span>
+  </a>
+  <nav id="navMenu">
+    <ul>
+      <li><a href="#about" class="nav-link">About</a></li>
+      <li><a href="#gallery" class="nav-link">Collection</a></li>
+      <li><a href="#contact" class="nav-link">Contact</a></li>
+    </ul>
+  </nav>
+  <div class="nav-toggle" id="navToggle">
+    <span></span><span></span><span></span>
+  </div>
+</header>
+
+<div id="top" class="hero">
+  <img src="logo.png" alt="Aventinaa" class="hero-logo">
+  <h1>AVENT<span>IN</span>AA</h1>
+  <p class="tagline">The Art of Elegance</p>
+  <p class="desc">
+    Welcome to Aventinaa — a jewellery brand made for the youth who believe elegance
+    isn't inherited, it's chosen. Every piece we craft is a quiet statement of
+    confidence, refinement and modern grace.
+  </p>
+  <div class="cta">
+    <a href="#gallery" class="btn filled">View Collection</a>
+    <a href="#contact" class="btn">Contact Us</a>
+  </div>
+  <div class="scroll-hint"><span>Scroll</span><span class="line"></span></div>
+</div>
+
+<section id="about">
+  <div class="section-head reveal">
+    <span class="eyebrow">Our Philosophy</span>
+    <h2>Elegance, Redefined for the Bold</h2>
+  </div>
+  <div class="about-grid">
+    <div class="about-card reveal">
+      <h3>Who We Are</h3>
+      <p>
+        Aventinaa is a jewellery brand built for a new generation — one that wears
+        confidence as effortlessly as it wears gold. We specialise in elegance:
+        clean lines, honest craftsmanship, and pieces designed to move with you,
+        not just sit in a box.
+      </p>
+    </div>
+    <div class="about-visual reveal">
+      <img src="logo.png" alt="Aventinaa emblem">
+    </div>
+  </div>
+</section>
+
+<section id="gallery">
+  <div class="section-head reveal">
+    <span class="eyebrow">The Collection</span>
+    <h2>Curated Pieces</h2>
+    <p>Click on any piece to explore its story and enquire directly.</p>
+  </div>
+  <div class="gallery" id="galleryGrid"></div>
+</section>
+
+<section id="contact">
+  <div class="contact-wrap reveal">
+    <div class="contact-card">
+      <span class="eyebrow" style="color:var(--gold)">Get in Touch</span>
+      <h2 style="margin-top:14px; font-weight:400;">We'd Love to Hear From You</h2>
+      <p style="margin-top:18px; color:rgba(243,241,236,0.72); line-height:1.9;">
+        Have a question about a piece, custom order, or just want to say hello —
+        reach out to us anytime.
+      </p>
+      <div class="contact-actions">
+        <a href="https://wa.me/910000000000" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.1-1.7-.9-2-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5C10 9 9.4 7.6 9.1 7c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.1 0 1.2.9 2.4 1 2.6.1.2 1.8 2.8 4.4 3.9.6.3 1.1.4 1.5.5.6.2 1.2.2 1.6.1.5-.1 1.7-.7 1.9-1.3.2-.6.2-1.1.2-1.2 0-.1-.2-.2-.5-.3z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.6 1.4 5.1L2 22l5.1-1.3C8.5 21.6 10.2 22 12 22c5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3 .8.8-2.9-.2-.3C4.2 14.9 3.8 13.5 3.8 12c0-4.5 3.7-8.2 8.2-8.2s8.2 3.7 8.2 8.2-3.7 8.2-8.2 8.2z"/></svg>
+          WhatsApp Us
+        </a>
+        <a href="mailto:hello@aventinaa.com">
+          <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+          Mail Us
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="brand">
+    <img src="logo.png" alt="Aventinaa" style="height:34px;width:34px;object-fit:contain;">
+    <span style="font-size:1rem; letter-spacing:3px;">AVENTINAA</span>
+  </div>
+  <p>&copy; <span id="year"></span> Aventinaa. The Art of Elegance.</p>
+</footer>
+
+<!-- Floating contact -->
+<div class="floating-contact">
+  <div class="fc-menu" id="fcMenu">
+    <a href="https://wa.me/910000000000" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.1-1.7-.9-2-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5C10 9 9.4 7.6 9.1 7c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.1 0 1.2.9 2.4 1 2.6.1.2 1.8 2.8 4.4 3.9.6.3 1.1.4 1.5.5.6.2 1.2.2 1.6.1.5-.1 1.7-.7 1.9-1.3.2-.6.2-1.1.2-1.2 0-.1-.2-.2-.5-.3z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.6 1.4 5.1L2 22l5.1-1.3C8.5 21.6 10.2 22 12 22c5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3 .8.8-2.9-.2-.3C4.2 14.9 3.8 13.5 3.8 12c0-4.5 3.7-8.2 8.2-8.2s8.2 3.7 8.2 8.2-3.7 8.2-8.2 8.2z"/></svg>
+      WhatsApp
+    </a>
+    <a href="mailto:hello@aventinaa.com">
+      <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+      Email
+    </a>
+  </div>
+  <button class="fc-toggle" id="fcToggle" aria-label="Contact us">
+    <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/></svg>
+  </button>
+</div>
+
+<!-- Modal -->
+<div class="modal-backdrop" id="modalBackdrop">
+  <div class="modal" id="modalCard">
+    <div class="modal-close" id="modalClose">&times;</div>
+    <div class="modal-img"><img id="modalImg" src="" alt=""></div>
+    <div class="modal-body">
+      <h3 id="modalTitle"></h3>
+      <p id="modalDesc"></p>
+      <a href="#" target="_blank" rel="noopener" class="btn filled" id="modalBuy">Enquire / Buy</a>
+    </div>
+  </div>
+</div>
+
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+
+/* Mobile nav toggle */
+const navToggle = document.getElementById('navToggle');
+const navMenu = document.getElementById('navMenu');
+navToggle.addEventListener('click', () => {
+  navMenu.classList.toggle('open');
+});
+document.querySelectorAll('.nav-link').forEach(a => {
+  a.addEventListener('click', () => navMenu.classList.remove('open'));
+});
+
+/* Floating contact toggle */
+const fcToggle = document.getElementById('fcToggle');
+const fcMenu = document.getElementById('fcMenu');
+fcToggle.addEventListener('click', () => fcMenu.classList.toggle('open'));
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('.floating-contact')) fcMenu.classList.remove('open');
+});
+
+/* Scroll reveal */
+const revealEls = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.15 });
+revealEls.forEach(el => revealObserver.observe(el));
+
+/* ---------------------------------------------------------
+   Dynamic gallery loader
+   Looks for image1.jpg, image2.jpg, image3.jpg ... in sequence.
+   Stops automatically at the first missing number, so adding
+   image9.jpg, image10.jpg etc. is picked up with no code change.
+   For each imageN.jpg it also looks for:
+     - linkN.txt  -> buy / enquiry URL
+     - descN.txt  -> description text
+   Simply replace these files in the repo to update content.
+--------------------------------------------------------- */
+const MAX_IMAGES_TO_CHECK = 200;
+
+function loadImageExists(src) {
+  return new Promise((resolve) => {
+    const img = new Image();
+    img.onload = () => resolve(true);
+    img.onerror = () => resolve(false);
+    img.src = src;
+  });
+}
+
+async function fetchText(path, fallback) {
+  try {
+    const res = await fetch(path, { cache: 'no-store' });
+    if (!res.ok) return fallback;
+    const text = (await res.text()).trim();
+    return text || fallback;
+  } catch (e) {
+    return fallback;
+  }
+}
+
+async function buildGallery() {
+  const grid = document.getElementById('galleryGrid');
+  const items = [];
+  let n = 1;
+  let misses = 0;
+
+  while (n <= MAX_IMAGES_TO_CHECK && misses < 1) {
+    const src = `image${n}.jpg`;
+    const exists = await loadImageExists(src);
+    if (exists) {
+      items.push(n);
+      n++;
+    } else {
+      misses++;
+    }
+  }
+
+  for (const num of items) {
+    const [link, desc] = await Promise.all([
+      fetchText(`link${num}.txt`, '#contact'),
+      fetchText(`desc${num}.txt`, `A handcrafted Aventinaa piece designed with elegance and care.`)
+    ]);
+
+    const el = document.createElement('div');
+    el.className = 'g-item reveal';
+    el.innerHTML = `
+      <img src="image${num}.jpg" alt="Aventinaa piece ${num}" loading="lazy">
+      <div class="overlay"><span>Piece ${String(num).padStart(2,'0')}</span></div>
+    `;
+    el.addEventListener('click', () => openModal(`image${num}.jpg`, `Piece ${String(num).padStart(2,'0')}`, desc, link));
+    grid.appendChild(el);
+
+    revealObserver.observe(el);
+    const galleryObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          galleryObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    galleryObserver.observe(el);
+  }
+}
+
+/* Modal */
+const modalBackdrop = document.getElementById('modalBackdrop');
+const modalImg = document.getElementById('modalImg');
+const modalTitle = document.getElementById('modalTitle');
+const modalDesc = document.getElementById('modalDesc');
+const modalBuy = document.getElementById('modalBuy');
+const modalClose = document.getElementById('modalClose');
+
+function openModal(src, title, desc, link) {
+  modalImg.src = src;
+  modalTitle.textContent = title;
+  modalDesc.textContent = desc;
+  modalBuy.href = link;
+  modalBackdrop.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal() {
+  modalBackdrop.classList.remove('active');
+  document.body.style.overflow = '';
+}
+modalClose.addEventListener('click', closeModal);
+modalBackdrop.addEventListener('click', (e) => {
+  if (e.target === modalBackdrop) closeModal();
+});
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeModal();
+});
+
+buildGallery();
+</script>
+
+</body>
+</html>
